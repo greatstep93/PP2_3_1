@@ -15,17 +15,18 @@
 <table class="table table-bordered table-striped">
     <thead class="thead-dark">
 
-    <th colspan="5"><a href="/users/new/"><center>Create New User</center></a>
+    <th colspan="5"><a href="/users/new/">
+        <center>Create New User</center>
+    </a>
 
 
-
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-        <th>Update User</th>
-        <th>Delete User</th>
-    </tr>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Update User</th>
+            <th>Delete User</th>
+        </tr>
     </thead>
     <tbody>
     <tr th:each="user:${users}">
@@ -33,13 +34,16 @@
         <td th:text="${user.getLastName()}">emptyColor</td>
         <td th:text="${user.getEmail()}">emptyYear</td>
         <td>
-            <a th:href="@{/users/{id}/edit(id=${user.getId()})}" th:text= "UPDATE">UPDATE USER</a>
+            <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" th:object="${user}">
+                <input type="submit" value="UPDATE"/>
+            </form>
         </td>
         <td>
             <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
-                <input type="submit" value = "DELETE"/>
+                <input type="submit" value="DELETE"/>
             </form>
         </td>
+
 
 
     </tr>
@@ -48,7 +52,6 @@
 
 
 </table>
-
 
 
 </body>
